@@ -24,12 +24,19 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'login';
 
     <link rel="stylesheet" href="assets/build/css/style.css">
     <script src="assets/js/libs/modernizr-2.6.2.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+	<!--font-->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
 
 </head>
 <body>
 
     <?php include($page . '.php'); ?>
 
+
+<script type="text/javascript" src="assets/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="assets/js/main.js"></script>
 </body>
 </html>
 
