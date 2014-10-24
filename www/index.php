@@ -1,3 +1,3 @@
 <?php
-
-# check session: go to home or login
+include('config.php');
+include('base.php');
