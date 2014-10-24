@@ -69,3 +69,29 @@ if(count($follow) > 0){
 } else {
 	echo 'geen resultaten';
 }
+
+
+?>
+
+
+<section class="video">
+Video
+</section>
+
+
+<section class="profile-content">	
+
+	<div class="detail-item">
+	<img class="detail-img" src="assets/img/avatar.png">
+		<h3>Ready to party! Lets get some chick here.</h3>
+		<p>Went to the supermarket after drinking a beer with couple of friends. Turned out pretty late.</p>
+		<p class="tags"><span>tags:</span>#sleepy , #lazy , #yolo</p>
+	</div>
+
+<div class="full">
+		<div class="third facebook">fb</div>
+		<div class="third tweet">tw</div>
+		<div class="third comment">comment</div>
+</div>
+
+</section>

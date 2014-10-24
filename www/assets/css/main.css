@@ -230,7 +230,7 @@ a.profile.likes{
 	background-color:#f1fbfb;
 	margin:0px;
 	padding:0px;
-	padding-right:160px;
+	max-width: 350px;
 }
 
 .feed-item p{
@@ -240,10 +240,11 @@ a.profile.likes{
 	font-weight: 100;
 	padding-right:40px;
 	position: relative;
-	padding-right:160px;
+
 }
 
-.feed-item p.tags{
+.feed-item p.tags,
+.detail-item p.tags{
 	color:#8db8bb;
 	font-size: 15px;
 	margin:5px auto;
@@ -290,5 +291,55 @@ a.profile.likes{
 	float:right;
 	border-radius: 50%;
 	border:5px solid #8db8bb;
-	margin-top:-35px;
+	margin-top:-25px;
+	margin-right:25px;
+}
+
+/*DETAIL*/
+
+.detail .top-bar{
+	border-bottom:5px solid #b5d3d5;
+}
+
+.detail-item{
+	padding:30px 0px 20px 105px;
+	position: relative;
+}
+
+.detail-item h3{
+	font-size: 25px;
+	color:#545350;
+	text-decoration: none;
+	background-color:#f1fbfb;
+	margin-left:140px;
+	max-width: 350px;
+}
+
+.detail-item p{
+	color:#b2baba;
+	font-size: 15px;
+	margin:5px auto;
+	font-weight: 100;
+	padding-right:40px;
+	position: relative;
+
+}
+
+.detail-item .detail-img{
+	height:120px;
+	width:120px;
+	float:left;
+	border-radius: 50%;
+	border:5px solid #8db8bb;
+	margin-right:25px;
+	margin-top:25px;
+	margin-bottom: 50px;
+}
+
+/*VIDEO*/
+
+section.video{
+	height: 360px;
+	width:100%;
+	display: block;
 }
