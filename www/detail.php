@@ -72,7 +72,9 @@ if(count($follow) > 0){
 
 
 ?>
-
+<div class="top-bar">
+	<a class="trigger-menu" href="#"></a>
+</div>
 
 <section class="video">
 Video
