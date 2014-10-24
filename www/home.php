@@ -1,9 +1,8 @@
 <?php
-
-var_dump($_SESSION);
-
+if(!isset($_SESSION['id'])) {
+    echo '<script> window.location = "./index.php"</script>';
+}
 ?>
-
 
 <div class="top-bar">
 	<a class="trigger-menu" href="#"></a>
