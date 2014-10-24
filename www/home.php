@@ -1,9 +1,25 @@
 <?php
 
-var_dump($_SESSION);
+$user_id = isset($_SESSION['id']) ? $_SESSION['id'] : 'login';
+$select_detail = $pdo->prepare('SELECT u.* FROM user u 
+								INNER JOIN user f ON u.follow_id = f.id
+								WHERE u.id = :user_id');
+
+try
+{	
+	$select_detail->execute(array(':user_id' => $user_id));
+	$detail = $select_detail->fetchAll();
+	$select_detail->closeCursor();
+}
+catch(PDOException $e)
+{
+	$json['error'] = TRUE;
+	$json['msg'] = 'Error executing select_detail: ' . $e->getMessage();
+	exit;
+}
+
 
 ?>
-
 
 <div class="top-bar">
 	<a class="trigger-menu" href="#"></a>
@@ -11,9 +27,17 @@ var_dump($_SESSION);
 </div>
 <!--avatar-->
 <header class="profile">
-	<img src="assets/img/avatar.png" class="profile-avatar"/>
-	<h1>Jasper van Naarden</h1>
-	<h2>Simon aka Grumpy Cat loves sleeping and getting cuddled</h2>
+<?php
+if(count($detail) > 0){
+	foreach($detail as $row){
+		echo '<img src="assets/img/'. $row["picture"] .'" class="profile-avatar"/>';
+		echo "<h1>"  .$row["first_name"] . " ";
+		echo $row["last_name"] . "</h1>";
+		echo "<h2>" . $row["description"] . "</h2>";
+	}
+}
+
+?>
 	<div class="full">
 		<div class="third">
 			<a href="#" class="profile video">217</a>

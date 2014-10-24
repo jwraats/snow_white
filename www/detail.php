@@ -1,5 +1,5 @@
 <?php
-echo $_GET['id'];
+
 $user_id = isset($_GET['id']) ? $_GET['id'] : 'login';
 $select_detail = $pdo->prepare('SELECT u.* FROM user u 
 								INNER JOIN user f ON u.follow_id = f.id

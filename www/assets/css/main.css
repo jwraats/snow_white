@@ -199,13 +199,13 @@ a.profile.likes{
 	margin-bottom:0px;
 	color: #f1fbfb;
 	font-size: 48px;
-	text-shadow: 2px 2px 1px #b5d3d5;
+	text-shadow: 2px 2px 1px #333;
 	font-weight: 600;
 }
 
 .profile h2{
 	font-size:24px;
-	text-shadow: 2px 2px 1px #b5d3d5;
+	text-shadow: 1px 1px 1px #333;
 	color: #f1fbfb;
 	font-weight: 200;
 	text-align: center;
