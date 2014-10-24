@@ -1,6 +1,11 @@
 <?php
 
-$user_id = isset($_SESSION['id']) ? $_SESSION['id'] : 'login';
+if(!isset($_SESSION['id'])) {
+    echo '<script> window.location = "./index.php"</script>';
+} else {
+	$user_id = $_SESSION['id'];
+}
+
 $select_detail = $pdo->prepare('SELECT u.* FROM user u 
 								INNER JOIN user f ON u.follow_id = f.id
 								WHERE u.id = :user_id');
@@ -17,7 +22,6 @@ catch(PDOException $e)
 	$json['msg'] = 'Error executing select_detail: ' . $e->getMessage();
 	exit;
 }
-
 
 ?>
 
