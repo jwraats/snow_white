@@ -14,6 +14,11 @@ if(!$detail){
 	echo "User not existing";
 	exit;
 }
+$profileImage = "/images/".$detail->id."_0_default.jpeg";
+if(!file_exists(".".$profileImage)){
+	$profileImage = "/assets/img/avatar.png";
+}
+
 $feeds = $db->getFeedByUserId($detail->id);
 if($feeds){
 	$countFeeds = count($feeds);
@@ -65,7 +70,7 @@ else{
 		</div>
 	<!--avatar-->
 	<header class="profile">
-		<img src="<?php echo $detail->picture; ?>" class="profile-avatar"/>
+		<img src="<?php echo $profileImage; ?>" class="profile-avatar"/>
 		<h1><?php echo $detail->first_name; ?> <?php echo $detail->last_name; ?></h1>
 		<h2><?php echo $detail->description; ?></h2>
 		<div class="full">
