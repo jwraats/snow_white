@@ -68,7 +68,7 @@ foreach(scandir($imageDir, 1) as $img){
 	if(isset($imgArray[0]) && isset($imgArray[1]) && isset($imgArray[2])){
 		if($imgArray[2] == "after"){
 			if($imgArray[0] == $_SESSION['id']){
-				if(!$this->checkFeedSession($imgArray[1])){
+				if(!$this->checkFeedSession($imgArray[1]) && $imgArray[1] != "0"){
 					$images[] = $imgArray[1];
 				}
 			}
