@@ -83,11 +83,14 @@ else{
 		if(isset($_GET['friends'])){
 			if($friends){
 				foreach($friends as $friend){
-					$tags = $db->getTagsByFeedId($feed->id);
+					$profileImageFriend = "/images/".$friend->id."_0_default.jpeg";
+					if(!file_exists(".".$profileImageFriend)){
+						$profileImageFriend = "/assets/img/avatar.png";
+					}
 					echo '<a href="./index.php?page=home&id='.$friend->id.'">
 						<div class="feed-item">
 							<h3>'.$friend->first_name.' '.$friend->last_name.'</h3>
-							<img class="feed-img" src="'.$friend->picture.'">
+							<img class="feed-img" src="'.$profileImageFriend.'">
 							<p>'.$friend->description.'</p>
 						</div>
 					</a>';
