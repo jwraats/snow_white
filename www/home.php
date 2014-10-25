@@ -1,4 +1,3 @@
-
 <?php
 if(!isset($_SESSION['id'])) {
     echo '<script> window.location = "./index.php"</script>';exit;
@@ -30,6 +29,22 @@ if($feeds){
 else{
 	$countFeeds = 0;
 }
+$friends = $db->getFriendsByUserId($detail->id);
+
+if($friends){
+	$countFriends = count($friends);
+
+	//Dirty fix for a Layout problem :P
+	if($countFriends < 10){
+		$countFriends = "00".$countFriends;
+	}
+	else if($countFeeds < 100){
+		$countFriends = "0".$countFriends;
+	}
+}
+else{
+	$countFriends = 0;
+}
 ?>
 
 <div class="container">
@@ -44,19 +59,34 @@ else{
 		<h2><?php echo $detail->description; ?></h2>
 		<div class="full">
 			<div class="third">
-				<a href="#" class="profile video"><?php echo $countFeeds; ?></a>
+				<a href="./index.php?page=home" class="profile video"><?php echo $countFeeds; ?></a>
 			</div>
 			<div class="third">
-				<a href="#" class="profile photo">2261</a>
+				<a href="./index.php?page=home&friends" class="profile photo"><?php echo $countFriends; ?></a>
 			</div>
 			<div class="third">
-				<a href="#" class="profile likes">5531</a>
+				<a href="./index.php?page=home&likes" class="profile likes">5531</a>
 			</div>
 		</div>
 	</header>
 
 	<section class="profile-content">
 		<?php
+		if(isset($_GET['friends'])){
+			if($friends){
+				foreach($friends as $friend){
+					$tags = $db->getTagsByFeedId($feed->id);
+					echo '<a href="./index.php?page=home&id='.$friend->id.'">
+						<div class="feed-item">
+							<h3>'.$friend->first_name.' '.$friend->last_name.'</h3>
+							<img class="feed-img" src="'.$friend->picture.'">
+							<p>'.$friend->description.'</p>
+						</div>
+					</a>';
+				}
+			}
+		}
+		else{
 			if($feeds){
 				foreach($feeds as $feed){
 					$tags = $db->getTagsByFeedId($feed->id);
@@ -79,6 +109,9 @@ else{
 					</a>';
 				}
 			}
+		}
+
+			
 		?>
 	</section>
 </div>

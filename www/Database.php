@@ -14,6 +14,22 @@ class Database{
 		return $this->pdo;
 	}
 
+	public function getFriendsByUserId($userId){
+		$detail = false;
+		$select_detail = $this->pdo->prepare('SELECT u.* FROM friend f, user u WHERE f.user_id = :user_id AND f.friend_id = u.id');
+		try
+		{
+			$select_detail->execute(array(':user_id' => $userId));
+			$detail = $select_detail->fetchAll(PDO::FETCH_OBJ);
+			$select_detail->closeCursor();
+		}
+		catch(PDOException $e)
+		{
+			return false;
+		}
+		return $detail;
+	}
+
 	public function getUserByID($userId){
 		$detail = false;
 		$select_detail = $this->pdo->prepare('SELECT * FROM user WHERE id = :user_id');
