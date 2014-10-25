@@ -199,6 +199,12 @@ a.profile.likes{
 	height: 215px;
 	border-radius: 50%;
 	border:10px solid white;
+	overflow: hidden;
+	text-align:center;
+}
+.profile-avatar img {
+	height: 102%;
+	margin: -2px 0 0 -32px;
 }
 
 .profile h1{
