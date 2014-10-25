@@ -24,17 +24,6 @@ $tags = $db->getTagsByFeedId($detail->id);
 			<button class="trigger-menu" id="trigger-overlay" type="button"></button>
 		</div>
 
-		<div class="overlay overlay-slidedown">
-			<button type="button" class="overlay-close">Close</button>
-			<nav>
-				<ul>
-					<li><a href="#">Dashboard</a></li>
-					<li><a href="#">Profile</a></li>
-					<li><a href="#">Logout</a></li>
-				</ul>
-			</nav>
-		</div>
-
 		<div id="cf">
 		  <img class="bottom" src="assets/img/before.jpg" />
 		  <img class="top" src="assets/img/after.jpg" />
@@ -82,5 +71,16 @@ $tags = $db->getTagsByFeedId($detail->id);
 			</div>
 
 		</section>
+
+		<div class="overlay overlay-slidedown">
+			<button type="button" class="overlay-close">Close</button>
+			<nav>
+				<ul>
+					<li><a href="#">Dashboard</a></li>
+					<li><a href="./index.php?page=home">Profile</a></li>
+					<li><a href="./auth.php?logout">Logout</a></li>
+				</ul>
+			</nav>
+		</div>
 	</div>
 </div>
