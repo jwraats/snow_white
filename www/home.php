@@ -119,85 +119,33 @@ foreach(scandir($imageDir, 1) as $img){
 	</header>
 
 	<section class="profile-content">
+
 		<?php
 		if(isset($_GET['friends'])){
+			echo '<table class="friend">
+				<tr class="friend-row">';
 			if($friends){
+				$countRow = 0;
 				foreach($friends as $friend){
 					$profileImageFriend = "/images/".$friend->id."_0_default.jpeg";
 					if(!file_exists(".".$profileImageFriend)){
 						$profileImageFriend = "/assets/img/avatar.png";
 					}
+					$countRow++;
 					echo 
-					// '<a href="./index.php?page=home&id='.$friend->id.'">
-					// 	<div class="feed-item">
-					// 		<h3>'.$friend->first_name.' '.$friend->last_name.'</h3>
-					// 		<img class="feed-img" src="'.$profileImageFriend.'">
-					// 		<p>'.$friend->description.'</p>
-					// 	</div>
-					// </a>'
-
-					'
-					<table class="friend">
-						<tr class="friend-row">
-							<td class="friend-item">
-								<a href="" />
-									<img class="feed-img" src="'.$profileImageFriend.'">
-									<p>Jason Derulo</p>
-								</a>
-							</td>
-							<td class="friend-item">
-								<a href="" />
-									<img class="feed-img" src="'.$profileImageFriend.'">
-									<p>Jason Derulo</p>
-								</a>
-							</td>
-							<td class="friend-item">
-								<a href="" />
-									<img class="feed-img" src="'.$profileImageFriend.'">
-									<p>Jason Derulo</p>
-								</a>
-							</td>
-							<td class="friend-item">
-								<a href="" />
-									<img class="feed-img" src="'.$profileImageFriend.'">
-									<p>Jason Derulo</p>
-								</a>
-							</td>
-						</tr>
-						<tr class="friend-row">
-							<td class="friend-item">
-								<a href="" />
-									<img class="feed-img" src="'.$profileImageFriend.'">
-									<p>Jason Derulo</p>
-								</a>
-							</td>
-							<td class="friend-item">
-								<a href="" />
-									<a href="" />
-									<img class="feed-img" src="'.$profileImageFriend.'">
-									<p>Jason Derulo</p>
-								</a>
-								</a>
-							</td>
-							<td class="friend-item">
-								<a href="" />
-									<img class="feed-img" src="'.$profileImageFriend.'">
-									<p>Jason Derulo</p>
-								</a>
-							</td>
-							<td class="friend-item">
-								<a href="" />
-									<img class="feed-img" src="'.$profileImageFriend.'">
-									<p>Jason Derulo</p>
-								</a>
-							</td>
-						</tr>
-					</table>
-					'
-
-					;
+						'<td class="friend-item">
+							<a href="./index.php?page=home&id='.$friend->id.'">
+								<img class="feed-img" src="'.$profileImageFriend.'">
+								<p>'.$friend->first_name.' '.$friend->last_name.'</p>
+							</a>
+						</td>';
+					if(($countRow % 4) == 0){
+						echo '</tr><tr class="friend-row">';
+					}
 				}
 			}
+			echo '</tr>
+					</table>';
 		}
 		else{
 			if($feeds){
