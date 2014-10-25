@@ -72,28 +72,53 @@ if(count($follow) > 0){
 
 
 ?>
-<div class="top-bar">
-	<a class="trigger-menu" href="#"></a>
-</div>
+<div class="container">
+	<div id="detail">
+		<div class="top-bar">
+			<a class="trigger-menu" href="#"></a>
+		</div>
 
-<section class="video">
-Video
-</section>
+		<section class="video">
+			<video
+			  controls preload="auto" width="100%" height="100%"
+			 <source src="https://bynder-public.s3.amazonaws.com/media/3ADB5E6D-AC07-4C4F-BAC3433A3696B4FE/718/2E20025A-3420-4121-BD4FA40CF9493360/46EA2EAC-F2F0-4552-AC65663B101A28A1.webm" type='video/mp4' />
+			</video>
+		</section>
 
 
-<section class="profile-content">	
+		<section class="profile-content">
+			<div class="detail-item">
+				<img class="detail-img" src="assets/img/avatar.png">
+				<h3>Ready to party! Lets get some chick here.</h3>
+				<p>Went to the supermarket after drinking a beer with couple of friends. Turned out pretty late.</p>
+				<p class="tags"><span>tags:</span>#sleepy , #lazy , #yolo</p>
+			</div>
 
-	<div class="detail-item">
-	<img class="detail-img" src="assets/img/avatar.png">
-		<h3>Ready to party! Lets get some chick here.</h3>
-		<p>Went to the supermarket after drinking a beer with couple of friends. Turned out pretty late.</p>
-		<p class="tags"><span>tags:</span>#sleepy , #lazy , #yolo</p>
+			<div class="full">
+				<div class="third facebook"></div>
+				<div class="third twitter"></div>
+				<div class="third comment"></div>
+			</div>
+
+			<div class="comments">
+				<h3 class="title">24 comments</h3>
+				<div class="comment-item">
+					<img class="comment-img" src="assets/img/guy1.jpg">
+					<p class="person"><span>Mark Flanders</span> - 2 hours ago</p>
+					<p>Went to the supermarket after drinking a beer with couple of friends. Turned out pretty late.</p>
+				</div>
+				<div class="comment-item">
+					<img class="comment-img" src="assets/img/guy2.jpg">
+					<p class="person"><span>Abraham Scofield</span> - 46 hours ago</p>
+					<p>Went to the supermarket after drinking a beer with couple of friends. Turned out pretty late. Went to the supermarket after drinking a beer with couple of friends. Turned out pretty late.Went to the supermarket after drinking a beer with couple of friends. Turned out pretty late. Went to the supermarket after drinking a beer with couple of friends. Turned out pretty late.Went to the supermarket after drinking a beer with couple of friends. Turned out pretty late. Went to the supermarket after drinking a beer with couple of friends. Turned out pretty late.</p>
+				</div>
+				<div class="comment-item">
+					<img class="comment-img" src="assets/img/guy3.jpg">
+					<p class="person"><span>Herman von Smallhausen</span> - 4 weeks ago</p>
+					<p>Went to the supermarket after drinking a beer with couple of friends. Turned out pretty late.</p>
+				</div>
+			</div>
+
+		</section>
 	</div>
-
-<div class="full">
-		<div class="third facebook">fb</div>
-		<div class="third tweet">tw</div>
-		<div class="third comment">comment</div>
 </div>
-
-</section>

@@ -1,3 +1,5 @@
+body { background:#1a1a1a; }
+
 /*TEKST*/
 h1{
 	font-weight:400;
@@ -6,6 +8,7 @@ h1{
 
 /*STRUCT*/
 .clearfix{clear:both;}
+.container{width:640px; margin:0 auto;}
 
 .full{width: 100%; float:left;}
 .third{width: 33%; float:left;}
@@ -17,72 +20,76 @@ body,html{
 	padding:0px;
 	margin:0px;
 	font-family: 'Open Sans', sans-serif;
-	min-width: 640px;
-	max-width: 700px;
+	width:100%;
 }
 
 a{
 	text-decoration: none;
 }
 
-body.log-in{
-	background-color: #ccebed;
+#login{
+	background-color: #8db8bb;
+	height: 100vh;
+	margin: 0 auto;
 }
-
-form{
-	width: 90%;
-	margin:0px auto;
-	display: block;
+#login #logo {
+	background-image: url('../img/logo.png');
+	width:306px;
+	height:265px;
+	margin: 0 auto 100px;
+}
+[placeholder]:focus::-webkit-input-placeholder {
+  transition: opacity 0.5s 0.5s ease; 
+  opacity: 0;
 }
 
 fieldset{
-	background-color: #f1fbfb;
 	border:none;
-	border-radius:5px;
-	width: 75%;
 	margin:0px auto;
-	padding-bottom: 25px;
-}
-
-fieldset label{
-	display: block;
-	font-weight: 100;
-	color:#545350;
-	margin:0px auto;
-	width: 80%;
-	margin-top: 25px;
+	width:400px;
 }
 
 fieldset input{
 	position: relative;
-	margin-top: 3px;
 	border: none;
 	background-color: white;
-	-webkit-box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
-    -moz-box-shadow:    0px 2px 2px 0px rgba(0, 0, 0, 0.25);
-    box-shadow:         0px 2px 2px 0px rgba(0, 0, 0, 0.25);
-	border-radius: 35px;
-	width: 80%;
+	border-radius: 30px;
+	height:60px;
 	display: block;
-	padding: 8px;
-	margin:5px auto;
+	margin:5px auto 30px;
+	width:100%;
+	outline: none;
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 18px;
+	color: #b2baba;
 }
 
 fieldset button{
-	border:none;
-	background-color: white;
-	border-radius: 5px;
-	padding:15px 25px;
-	margin-left:8%;
-	margin-top:20px;
-	font-size:14px;
-	-webkit-box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.25);
-    -moz-box-shadow:    0px 2px 0px 0px rgba(0, 0, 0, 0.25);
-    box-shadow:         0px 2px 0px 0px rgba(0, 0, 0, 0.25);
-    color:#545350;
-    outline: none;
+	position: relative;
+	border: none;
+	background-color: #b5d3d5;
+	border-radius: 30px;
+	height:60px;
+	display: block;
+	padding: 8px;
+	margin:60px auto 20px;
+	width:100%;
+	outline: none;
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 22px;
+	color: #FFF;
 }
 
+#login a {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 18px;
+	color: #FFF;
+	text-decoration: none;
+	text-align: center;
+	display:block;
+}
 
 /*PROFILE*/
 
@@ -92,6 +99,7 @@ fieldset button{
 	position: relative;
 	display: block;
 	background-color: #ccebed;
+	border-bottom:5px solid #b5d3d5;
 }
 
 .trigger-menu{
@@ -159,7 +167,7 @@ a.profile.video:before{
 	width:10px;
 	height:30px;
 	background-color: #b5d3d5;
-	left:59px;
+	margin-left: -16px;
 	bottom:0px;
 }
 
@@ -210,6 +218,7 @@ a.profile.likes{
 	font-weight: 200;
 	text-align: center;
 	margin-top:15px;
+	min-height: 66px;
 }
 
 /*profile-content*/
@@ -219,7 +228,7 @@ a.profile.likes{
 	padding-top:20px;
 }
 .feed-item{
-	padding:30px 0px 20px 105px;
+	padding:30px 0px 20px 135px;
 	position: relative;
 }
 
@@ -230,16 +239,15 @@ a.profile.likes{
 	background-color:#f1fbfb;
 	margin:0px;
 	padding:0px;
-	max-width: 350px;
+	width: 320px;
 }
 
 .feed-item p{
 	color:#b2baba;
 	font-size: 15px;
-	margin:5px auto;
 	font-weight: 100;
-	padding-right:40px;
-	position: relative;
+	margin-right:165px;
+	width: 320px;
 
 }
 
@@ -247,12 +255,11 @@ a.profile.likes{
 .detail-item p.tags{
 	color:#8db8bb;
 	font-size: 15px;
-	margin:5px auto;
 	font-weight: 100;
-
 }
 
-.feed-item p.tags span{
+.feed-item p.tags span,
+.detail-item p.tags span{
 	text-transform: uppercase;
 	font-weight: bold;
 	margin-right:5px;
@@ -265,7 +272,7 @@ a.profile.likes{
 	position: absolute;
 	width: 10px;
 	height: 100%;
-	left: 59px;
+	left: 89px;
 	top:-20px;
 }
 
@@ -278,7 +285,7 @@ a.profile.likes{
 	height:40px;
 	top:65px;
 	position: absolute;
-	left:45px;
+	left:74px;
 	content:'a';
 	color: transparent;
 	background-color: #f1fbfb;
@@ -291,18 +298,14 @@ a.profile.likes{
 	float:right;
 	border-radius: 50%;
 	border:5px solid #8db8bb;
-	margin-top:-25px;
+	margin-top:-50px;
 	margin-right:25px;
 }
 
 /*DETAIL*/
 
-.detail .top-bar{
-	border-bottom:5px solid #b5d3d5;
-}
-
 .detail-item{
-	padding:30px 0px 20px 105px;
+	padding:1px 0px 30px 30px;
 	position: relative;
 }
 
@@ -310,8 +313,7 @@ a.profile.likes{
 	font-size: 25px;
 	color:#545350;
 	text-decoration: none;
-	background-color:#f1fbfb;
-	margin-left:140px;
+	margin: 15px 30px 0 140px;
 	max-width: 350px;
 }
 
@@ -335,6 +337,33 @@ a.profile.likes{
 	margin-top:25px;
 	margin-bottom: 50px;
 }
+#detail .facebook {
+	background:#3b5998;
+	background-image: url('../img/buttons/facebook.png');
+	background-repeat: no-repeat;
+	width:213px;
+	height:60px;
+}
+#detail .twitter {
+	background: #55acee;
+	background-image: url('../img/buttons/twitter.png');
+	background-repeat: no-repeat;
+	width:213px;
+	height:60px;
+}
+#detail .comment {
+	background-image: url('../img/buttons/comment.png');
+	background-repeat: no-repeat;
+	width:214px;
+	height:60px;
+}
+#detail .comments { clear: both; }
+#detail .comments .title { 
+	font-size: 25px;
+	color: #545350;
+	text-decoration: none;
+	padding: 15px 0 0 30px;
+}
 
 /*VIDEO*/
 
@@ -342,4 +371,43 @@ section.video{
 	height: 360px;
 	width:100%;
 	display: block;
+}
+
+/* COMMENT */
+
+.comment-item{
+	padding:1px 0px 30px 30px;
+	position: relative;
+}
+
+.comment-item h3{
+	font-size: 25px;
+	color:#545350;
+	text-decoration: none;
+	margin-left:140px;
+}
+
+.comment-item p{
+	color:#b2baba;
+	font-size: 15px;
+	margin:5px auto;
+	font-weight: 100;
+	padding-right:40px;
+	position: relative;
+	padding-left: 105px;
+}
+
+.comment-item .comment-img{
+	height:70px;
+	width:70px;
+	float:left;
+	border-radius: 50%;
+	border:5px solid #8db8bb;
+	margin-right:25px;
+}
+
+.comments p.person span{
+	font-weight: bold;
+	margin-right:5px;
+	color:#8db8bb;
 }

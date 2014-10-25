@@ -20,15 +20,27 @@
 	<!--font-->
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
 
+
+    <script type="text/javascript">
+        $(function() {
+            $('nav#menu').mmenu();
+        });
+    </script>
+
 </head>
 <body>
 
     <?php include($page . '.php'); ?>
 
 
+
+
+
 <script type="text/javascript" src="assets/js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="assets/js/main.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.mmenu.min.all.js"></script>
 </body>
 </html>
 
