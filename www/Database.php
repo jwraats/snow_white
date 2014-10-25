@@ -32,26 +32,28 @@ class Database{
 	}
 
 	public function checkFeedSession($session){
-		if(!isset($_SESSION['id']) || isset($_SESSION['id']) && !is_numeric($_SESSION['id'])){
+		if(isset($_SESSION['id'])){
 			return false;
 		}
 		$detail = false;
-		$select_detail = $this->pdo->prepare('SELECT * FROM feed WHERE session = :session');
+		$select_detail = $this->pdo->prepare('SELECT * FROM feed WHERE session = :session AND user_id = :user_id');
 		try
 		{
 			$select_detail->execute(array(':user_id' => $_SESSION['id'], ':session' => $session));
 			$detail = $select_detail->fetchAll(PDO::FETCH_OBJ);
+
 			$select_detail->closeCursor();
 		}
 		catch(PDOException $e)
 		{
+			var_dump($e);
 			return false;
 		}
 		return $detail;
 	}
 
 	public function addFeed($session, $title, $message){
-		if(!$this->checkFeedSession($id)){
+		if(!$this->checkFeedSession($session)){
 			if(!isset($_SESSION['id']) || isset($_SESSION['id']) && !is_numeric($_SESSION['id'])){
 				return false;
 			}
@@ -65,6 +67,7 @@ class Database{
 			}
 
 		}
+		return false;
 	}
 
 	public function delFriend($id){
@@ -170,7 +173,7 @@ class Database{
 
 	public function getFeedByUserId($userId){
 		$detail = false;
-		$select_detail = $this->pdo->prepare('SELECT * FROM feed WHERE user_id = :user_id');
+		$select_detail = $this->pdo->prepare('SELECT * FROM feed WHERE user_id = :user_id ORDER BY id DESC');
 		try
 		{
 			$select_detail->execute(array(':user_id' => $userId));

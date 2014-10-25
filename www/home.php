@@ -61,21 +61,6 @@ if($friends){
 else{
 	$countFriends = 0;
 }
-
-$images = array();
-foreach(scandir($imageDir, 1) as $img){
-	$imgArray = explode("_", $img);
-	if(isset($imgArray[0]) && isset($imgArray[1]) && isset($imgArray[2])){
-		if($imgArray[2] == "after"){
-			if($imgArray[0] == $_SESSION['id']){
-				if(!$this->checkFeedSession($imgArray[1]) && $imgArray[1] != "0"){
-					$images[] = $imgArray[1];
-				}
-			}
-		}
-	}
-}
-
 ?>
 
 <div class="container">
@@ -88,7 +73,7 @@ foreach(scandir($imageDir, 1) as $img){
 			if($detail->id != $_SESSION['id']){
 				echo '<a class="trigger-remove-friend" href="./index.php?page=home&id='.$detail->id.'&delFriend"></a>';
 			}else{
-				echo '<a class="trigger-setting" href="./index.php?page=addAsset"></a>';
+				echo '<a class="trigger-settings" href="./index.php?page=add-video"></a>';
 			}
 		}
 		?>
@@ -180,7 +165,7 @@ foreach(scandir($imageDir, 1) as $img){
 		<button type="button" class="overlay-close">Close</button>
 		<nav>
 			<ul>
-				<li><a href="#">Dashboard</a></li>
+				<li><a href="./index.php?page=dashboard">Dashboard</a></li>
 				<li><a href="./index.php?page=home">Profile</a></li>
 				<li><a href="./auth.php?logout">Logout</a></li>
 			</ul>
