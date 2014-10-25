@@ -14,7 +14,7 @@ $select_detail = $pdo->prepare('SELECT u.* FROM user u
 try
 {	
 	$select_detail->execute(array(':user_id' => $user_id));
-	$detail = $select_detail->fetchAll();
+	$detail = $select_detail->fetch(PDO::FETCH_OBJ);
 	$select_detail->closeCursor();
 }
 catch(PDOException $e)
@@ -31,31 +31,11 @@ catch(PDOException $e)
 		<div class="container">
 			<a class="trigger-menu" href="#"></a>
 			<a class="trigger-settings" href="#"></a>
-
-<div class="top-bar">
-	<a class="trigger-menu" href="#"></a>
-	<a class="trigger-settings" href="#"></a>
-</div>
-<!--avatar-->
-<header class="profile">
-<?php
-if(count($detail) > 0){
-	foreach($detail as $row){
-		echo '<img src="assets/img/'. $row["picture"] .'" class="profile-avatar"/>';
-		echo "<h1>"  .$row["first_name"] . " ";
-		echo $row["last_name"] . "</h1>";
-		echo "<h2>" . $row["description"] . "</h2>";
-	}
-}
-
-?>
-
-
 	<!--avatar-->
 	<header class="profile">
-		<img src="assets/img/avatar.png" class="profile-avatar"/>
-		<h1>Jasper van Naarden</h1>
-		<h2>Simon aka Grumpy Cat loves sleeping and getting cuddled</h2>
+		<img src="<?php echo $detail->picture; ?>" class="profile-avatar"/>
+		<h1><?php echo $detail->first_name; ?> <?php echo $detail->last_name; ?></h1>
+		<h2><?php echo $detail->description; ?></h2>
 		<div class="full">
 			<div class="third">
 				<a href="#" class="profile video">217</a>
