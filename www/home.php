@@ -15,7 +15,21 @@ if(!$detail){
 	echo "User not existing";
 	exit;
 }
+$feeds = $db->getFeedByUserId($detail->id);
+if($feeds){
+	$countFeeds = count($feeds);
 
+	//Dirty fix for a Layout problem :P
+	if($countFeeds < 10){
+		$countFeeds = "00".$countFeeds;
+	}
+	else if($countFeeds < 100){
+		$countFeeds = "0".$countFeeds;
+	}
+}
+else{
+	$countFeeds = 0;
+}
 ?>
 
 <div class="container">
@@ -30,7 +44,7 @@ if(!$detail){
 		<h2><?php echo $detail->description; ?></h2>
 		<div class="full">
 			<div class="third">
-				<a href="#" class="profile video">217</a>
+				<a href="#" class="profile video"><?php echo $countFeeds; ?></a>
 			</div>
 			<div class="third">
 				<a href="#" class="profile photo">2261</a>
@@ -42,46 +56,29 @@ if(!$detail){
 	</header>
 
 	<section class="profile-content">
-		<a href="">
-			<div class="feed-item">
-				<h3>Feed item</h3>
-				<img class="feed-img" src="assets/img/avatar.png">
-				<p>Went to the supermarket after drinking a beer with couple of friends. Turned out pretty late.</p>
-				<p class="tags"><span>tags:</span>#sleepy , #lazy , #yolo</p>
-			</div>
-		</a>
-
-		<a href="">
-			<div class="feed-item">
-				<h3>Ready to party! Lets get some chick here.</h3>
-				<img class="feed-img" src="assets/img/avatar.png">
-				<p>Went to the supermarket after drinking a beer with couple of friends. Turned out pretty late.</p>
-				<p class="tags"><span>tags:</span>#sleepy , #lazy , #yolo</p>
-			</div>
-		</a>
-		<a href="">
-			<div class="feed-item">
-				<h3>Ready to party! Lets get some chick here.</h3>
-				<img class="feed-img" src="assets/img/avatar.png">
-				<p>Went to the supermarket after drinking a beer with couple of friends. Turned out pretty late.</p>
-				<p class="tags"><span>tags:</span>#sleepy , #lazy , #yolo</p>
-			</div>
-		</a>
-		<a href="">
-			<div class="feed-item">
-				<h3>Ready to party! Lets get some chick here.</h3>
-				<img class="feed-img" src="assets/img/avatar.png">
-				<p>Went to the supermarket after drinking a beer with couple of friends. Turned out pretty late.</p>
-				<p class="tags"><span>tags:</span>#sleepy , #lazy , #yolo</p>
-			</div>
-		</a>
-		<a href="">
-			<div class="feed-item">
-				<h3>Ready to party! Lets get some chick here.</h3>
-				<img class="feed-img" src="assets/img/avatar.png">
-				<p>Went to the supermarket after drinking a beer with couple of friends. Turned out pretty late.</p>
-				<p class="tags"><span>tags:</span>#sleepy , #lazy , #yolo</p>
-			</div>
-		</a>
+		<?php
+			if($feeds){
+				foreach($feeds as $feed){
+					$tags = $db->getTagsByFeedId($feed->id);
+					echo '<a href="">
+						<div class="feed-item">
+							<h3>'.$feed->title.'</h3>
+							<img class="feed-img" src="assets/img/avatar.png">
+							<p>'.$feed->message.'</p>
+							<p class="tags"><span>tags:</span>';
+								if($tags){
+									foreach($tags as $tag){
+										echo '#'.$tag->hashTag.' ';
+									}
+								}
+								else{
+									echo 'No tags atm';
+								}
+							echo '</p>
+						</div>
+					</a>';
+				}
+			}
+		?>
 	</section>
 </div>

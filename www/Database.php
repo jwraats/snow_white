@@ -45,6 +45,38 @@ class Database{
 		}
 		return $detail;
 	}
+
+	public function getFeedByUserId($userId){
+		$detail = false;
+		$select_detail = $this->pdo->prepare('SELECT * FROM feed WHERE user_id = :user_id');
+		try
+		{
+			$select_detail->execute(array(':user_id' => $userId));
+			$detail = $select_detail->fetchAll(PDO::FETCH_OBJ);
+			$select_detail->closeCursor();
+		}
+		catch(PDOException $e)
+		{
+			return false;
+		}
+		return $detail;
+	}
+
+	public function getTagsByFeedId($feedId){
+		$detail = false;
+		$select_detail = $this->pdo->prepare('SELECT * FROM tag WHERE feed_id = :feedId');
+		try
+		{
+			$select_detail->execute(array(':feedId' => $feedId));
+			$detail = $select_detail->fetchAll(PDO::FETCH_OBJ);
+			$select_detail->closeCursor();
+		}
+		catch(PDOException $e)
+		{
+			return false;
+		}
+		return $detail;
+	}
 }
 
 ?>
