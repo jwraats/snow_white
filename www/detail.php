@@ -6,92 +6,54 @@ if(!isset($_SESSION['id'])) {
 } else {
 	$user_id = $_SESSION['id'];
 }
-
-$select_detail = $pdo->prepare('SELECT u.* FROM user u
-								INNER JOIN user f ON u.follow_id = f.id
-								WHERE u.id = :user_id');
-
-$follow_detail = $pdo->prepare('SELECT f.* FROM user u
-								INNER JOIN user f ON u.follow_id = f.id
-								WHERE u.id = :user_id');
-
-try
-{
-	$select_detail->execute(array(':user_id' => $user_id));
-	$detail = $select_detail->fetchAll();
-	$select_detail->closeCursor();
-}
-catch(PDOException $e)
-{
-	$json['error'] = TRUE;
-	$json['msg'] = 'Error executing select_detail: ' . $e->getMessage();
-	exit;
+$detail = false;
+if(isset($_GET['id'])){
+	$detail = $db->getFeedById($_GET['id']);
 }
 
-try
-{
-	$follow_detail->execute(array(':user_id' => $user_id));
-	$follow = $follow_detail->fetchAll();
-	$follow_detail->closeCursor();
-}
-catch(PDOException $e)
-{
-	$json['error'] = TRUE;
-	$json['msg'] = 'Error executing follow_detail: ' . $e->getMessage();
-	exit;
+if(!$detail){
+	  echo '<script> window.location = "./index.php?page=home"</script>';exit;
 }
 
-if(count($detail) > 0){
-	foreach($detail as $row){
-		echo $row["first_name"];
-		echo "<br/>";
-		echo $row["last_name"];
-		echo "<br/>";
-		echo $row["username"];
-		echo "<br/>";
-		echo $row["picture"];
-		echo "<br/>";
-	}
-} else {
-	echo 'geen resultaten';
-}
-
-if(count($follow) > 0){
-	foreach($follow as $row){
-		echo $row["first_name"];
-		echo "<br/>";
-		echo $row["last_name"];
-		echo "<br/>";
-		echo $row["username"];
-		echo "<br/>";
-		echo $row["picture"];
-	}
-} else {
-	echo 'geen resultaten';
-}
-
+$tags = $db->getTagsByFeedId($detail->id);
 
 ?>
 <div class="container">
 	<div id="detail">
 		<div class="top-bar">
-			<a class="trigger-menu" href="#"></a>
+			<button class="trigger-menu" id="trigger-overlay" type="button"></button>
 		</div>
 
-		<section class="video">
-			<video
-			  controls preload="auto" width="100%" height="100%"
-			 <source src="https://bynder-public.s3.amazonaws.com/media/3ADB5E6D-AC07-4C4F-BAC3433A3696B4FE/718/2E20025A-3420-4121-BD4FA40CF9493360/46EA2EAC-F2F0-4552-AC65663B101A28A1.webm" type='video/mp4' />
-			</video>
-		</section>
+		<div class="overlay overlay-slidedown">
+			<button type="button" class="overlay-close">Close</button>
+			<nav>
+				<ul>
+					<li><a href="#">Dashboard</a></li>
+					<li><a href="#">Profile</a></li>
+					<li><a href="#">Logout</a></li>
+				</ul>
+			</nav>
+		</div>
+
+		<div id="cf">
+		  <img class="bottom" src="assets/img/before.jpg" />
+		  <img class="top" src="assets/img/after.jpg" />
+		</div>
 
 
 		<section class="profile-content">
 			<div class="detail-item">
 				<img class="detail-img" src="assets/img/avatar.png">
-				<h3>Ready to party! Lets get some chick here.</h3>
-				<p>Went to the supermarket after drinking a beer with couple of friends. Turned out pretty late.</p>
-				<p class="tags"><span>tags:</span>#sleepy , #lazy , #yolo</p>
+				<h3><?php echo $detail->title; ?></h3>
+				<p><?php echo $detail->message; ?></p>
+				<p class="tags"><span>tags:</span><?php if($tags){
+									foreach($tags as $tag){
+										echo '#'.$tag->hashTag.' ';
+									}
+								}
+								else{
+									echo 'No tags atm';
+								}?></p>
 			</div>
 
 			<div class="full">

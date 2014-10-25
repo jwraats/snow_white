@@ -1,6 +1,6 @@
 <?php
 if(!isset($_SESSION['id'])) {
-    echo '<script> window.location = "./index.php?page=login"</script>';exit;
+    echo '<script> window.location = "./index.php"</script>';exit;
 }
 
 if(isset($_GET['id'])){
@@ -14,12 +14,6 @@ if(!$detail){
 	echo "User not existing";
 	exit;
 }
-
-$profileImage = "/images/".$detail->id."_0_default.jpeg";
-if(!file_exists(".".$profileImage)){
-	$profileImage = "/assets/img/avatar.png";
-}
-
 $feeds = $db->getFeedByUserId($detail->id);
 if($feeds){
 	$countFeeds = count($feeds);
@@ -55,25 +49,34 @@ else{
 
 <div class="container">
 	<div class="top-bar">
-		<div class="container">
-			<a class="trigger-menu" href="#"></a>
+			<button class="trigger-menu" id="trigger-overlay" type="button"></button>
 			<a class="trigger-settings" href="#"></a>
 		</div>
-	</div>
+
+		<div class="overlay overlay-slidedown">
+			<button type="button" class="overlay-close">Close</button>
+			<nav>
+				<ul>
+					<li><a href="#">Dashboard</a></li>
+					<li><a href="#">Profile</a></li>
+					<li><a href="#">Logout</a></li>
+				</ul>
+			</nav>
+		</div>
 	<!--avatar-->
 	<header class="profile">
-		<img src="<?php echo $profileImage;  ?>" class="profile-avatar"/>
+		<img src="<?php echo $detail->picture; ?>" class="profile-avatar"/>
 		<h1><?php echo $detail->first_name; ?> <?php echo $detail->last_name; ?></h1>
 		<h2><?php echo $detail->description; ?></h2>
 		<div class="full">
 			<div class="third">
-				<a href="./index.php?page=home<?php if(isset($_GET['id'])){ echo "&id=".$_GET['id']; } ?>" class="profile video"><?php echo $countFeeds; ?></a>
+				<a href="./index.php?page=home" class="profile video"><?php echo $countFeeds; ?></a>
 			</div>
 			<div class="third">
-				<a href="./index.php?page=home&friends<?php if(isset($_GET['id'])){ echo "&id=".$_GET['id']; } ?>" class="profile photo"><?php echo $countFriends; ?></a>
+				<a href="./index.php?page=home&friends" class="profile photo"><?php echo $countFriends; ?></a>
 			</div>
 			<div class="third">
-				<a href="./index.php?page=home&likes<?php if(isset($_GET['id'])){ echo "&id=".$_GET['id']; } ?>" class="profile likes">5531</a>
+				<a href="./index.php?page=home&likes" class="profile likes">5531</a>
 			</div>
 		</div>
 	</header>
@@ -98,7 +101,7 @@ else{
 			if($feeds){
 				foreach($feeds as $feed){
 					$tags = $db->getTagsByFeedId($feed->id);
-					echo '<a href="">
+					echo '<a href="./index.php?page=detail&id='.$feed->id.'">
 						<div class="feed-item">
 							<h3>'.$feed->title.'</h3>
 							<img class="feed-img" src="assets/img/avatar.png">

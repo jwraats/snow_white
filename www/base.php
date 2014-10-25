@@ -17,6 +17,9 @@
     <link rel="stylesheet" href="assets/build/css/style.css">
     <script src="assets/js/libs/modernizr-2.6.2.min.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/style3.css" />
+    <script src="assets/js/modernizr.custom.js"></script>
 	<!--font-->
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
 
@@ -39,7 +42,7 @@
 <script type="text/javascript" src="assets/js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="assets/js/main.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script type="text/javascript" src="assets/js/jquery.mmenu.min.all.js"></script>
+<script type="text/javascript" src="assets/js/classie.js"></script>
+<script type="text/javascript" src="assets/js/demo1.js"></script>
 </body>
 </html>

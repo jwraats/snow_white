@@ -30,6 +30,23 @@ class Database{
 		return $detail;
 	}
 
+
+	public function getFeedById($id){
+		$detail = false;
+		$select_detail = $this->pdo->prepare('SELECT * FROM feed WHERE id = :id');
+		try
+		{
+			$select_detail->execute(array(':id' => $id));
+			$detail = $select_detail->fetch(PDO::FETCH_OBJ);
+			$select_detail->closeCursor();
+		}
+		catch(PDOException $e)
+		{
+			return false;
+		}
+		return $detail;
+	}
+
 	public function getUserByID($userId){
 		$detail = false;
 		$select_detail = $this->pdo->prepare('SELECT * FROM user WHERE id = :user_id');
