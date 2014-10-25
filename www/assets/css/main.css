@@ -138,6 +138,18 @@ fieldset button{
 	float:right;
 }
 
+.trigger-remove-friend{
+	background-image: url('../img/icons/remove_friend.png');
+	background-repeat: no-repeat;
+	background-size: 80%;
+	display: block;
+	height: 50px;
+	width: 50px;
+	margin-top:30px;
+	margin-right:15px;
+	float:right;
+}
+
 /*avatar*/
 header.profile{
 	height:460px;
@@ -448,4 +460,20 @@ a.profile.likes{
 	font-weight: bold;
 	margin-right:5px;
 	color:#8db8bb;
+}
+
+.alert {
+	width:100%;
+	height:60px;
+	background: pink;
+	text-align: center;
+	display: none;
+}
+.alert p {
+	padding-top: 18px;
+	margin:0;
+	text-decoration: none;
+	color: #f1fbfb;
+	text-shadow: 1px 1px 1px #EC5959;
+	font-size: 18px;
 }

@@ -55,8 +55,13 @@ else{
 <div class="container">
 	<div class="top-bar">
 		<button class="trigger-menu" id="trigger-overlay" type="button"></button>
-		<a class="trigger-settings" href="#"></a>
+		<a class="trigger-remove-friend" href="#"></a>
 	</div>
+
+	<div class="alert">
+		<p>Deze persoons is al toegevoegd</p>
+	</div>
+
 	<!--avatar-->
 	<header class="profile">
 		<div class="profile-avatar">
