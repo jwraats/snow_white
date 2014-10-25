@@ -50,14 +50,14 @@ class Database{
 		return $detail;
 	}
 
-	public function addFeed($id){
-		if(!$this->checkIfFriends($id)){
+	public function addFeed($session, $title, $message){
+		if(!$this->checkFeedSession($id)){
 			if(!isset($_SESSION['id']) || isset($_SESSION['id']) && !is_numeric($_SESSION['id'])){
 				return false;
 			}
 			try{
-				$q = $this->pdo->prepare('INSERT INTO friend (user_id, friend_id, timeAdded) VALUES(:userId, :friendId, :time)');
-				$q->execute(array(':userId' => $_SESSION['id'], ':friendId' => $id, ':time' => time()));
+				$q = $this->pdo->prepare('INSERT INTO feed (user_id, session, title, message, created) VALUES(:userId, :session, :title, :message, :time)');
+				$q->execute(array(':userId' => $_SESSION['id'], ':session' => $session, ':title' => $title, ':message' => $message, ':time' => time()));
 				return true;
 			}catch(PDOException $e)
 			{

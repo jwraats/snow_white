@@ -12,7 +12,11 @@ if(isset($_GET['id'])){
 }
 
 if(!$detail){
-	  echo '<script> window.location = "./index.php?page=home"</script>';exit;
+	  echo '<script> window.location = "./index.php?page=home&error=No feed.."</script>';exit;
+}
+$profileImage = "/images/".$detail->user_id."_0_default.jpeg";
+if(!file_exists(".".$profileImage)){
+	$profileImage = "/assets/img/avatar.png";
 }
 
 $tags = $db->getTagsByFeedId($detail->id);
@@ -25,14 +29,14 @@ $tags = $db->getTagsByFeedId($detail->id);
 		</div>
 
 		<div id="cf">
-		  <img class="bottom" src="assets/img/before.jpg" />
-		  <img class="top" src="assets/img/after.jpg" />
+		  <img class="bottom" src="<?php echo './images/'.$detail->user_id.'_'.$detail->session.'_before.jpeg'; ?>" />
+		  <img class="top" src="<?php echo './images/'.$detail->user_id.'_'.$detail->session.'_after.jpeg'; ?>" />
 		</div>
 
 
 		<section class="profile-content">
 			<div class="detail-item">
-				<img class="detail-img" src="assets/img/avatar.png">
+				<img class="detail-img" src="<?php echo $profileImage; ?>">
 				<h3><?php echo $detail->title; ?></h3>
 				<p><?php echo $detail->message; ?></p>
 				<p class="tags"><span>tags:</span><?php if($tags){

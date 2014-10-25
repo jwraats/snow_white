@@ -17,11 +17,11 @@ if(!$detail){
 
 if(isset($_GET['addFriend'])){
 	if(!$db->addFriend($_GET['id'])){
-		echo '<script> window.location = "./index.php?page=login&error=Er is een fout opgetreden"</script>';exit;
+		echo '<script> window.location = "./index.php?page=home&error=Er is een fout opgetreden"</script>';exit;
 	}
 } elseif(isset($_GET['delFriend'])){
 	if(!$db->delFriend($_GET['id'])){
-		echo '<script> window.location = "./index.php?page=login&error=Er is een fout opgetreden"</script>';exit;
+		echo '<script> window.location = "./index.php?page=home&error=Er is een fout opgetreden"</script>';exit;
 	}
 }
 
@@ -62,7 +62,19 @@ else{
 	$countFriends = 0;
 }
 
-
+$images = array();
+foreach(scandir($imageDir, 1) as $img){
+	$imgArray = explode("_", $img);
+	if(isset($imgArray[0]) && isset($imgArray[1]) && isset($imgArray[2])){
+		if($imgArray[2] == "after"){
+			if($imgArray[0] == $_SESSION['id']){
+				if(!$this->checkFeedSession($imgArray[1])){
+					$images[] = $imgArray[1];
+				}
+			}
+		}
+	}
+}
 
 ?>
 
@@ -71,20 +83,26 @@ else{
 		<button class="trigger-menu" id="trigger-overlay" type="button"></button>
 		<?php 
 		if(!$db->checkIfFriends($detail->id) && $detail->id != $_SESSION['id']){
-			echo '<a class="trigger-settings" href="./index.php?page=home&id='.$detail->id.'&addFriend"></a>';
+			echo '<a class="trigger-add-friend" href="./index.php?page=home&id='.$detail->id.'&addFriend"></a>';
 		} else{
 			if($detail->id != $_SESSION['id']){
-				echo '<a class="trigger-settings" href="./index.php?page=home&id='.$detail->id.'&delFriend"></a>DE';
+				echo '<a class="trigger-remove-friend" href="./index.php?page=home&id='.$detail->id.'&delFriend"></a>';
 			}else{
-
+				echo '<a class="trigger-setting" href="./index.php?page=addAsset"></a>';
 			}
-			
 		}
 		?>
 	</div>
+
+	<div class="alert" style="<?php if(isset($_GET['error'])){ echo "display:block;";}?>">
+		<p><?php if(isset($_GET['error'])){ echo $_GET['error'];}?></p>
+	</div>
+
 	<!--avatar-->
 	<header class="profile">
-		<img src="<?php echo $profileImage; ?>" class="profile-avatar"/>
+		<div class="profile-avatar">
+			<img src="<?php echo $profileImage; ?>"/>
+		</div>
 		<h1><?php echo $detail->first_name; ?> <?php echo $detail->last_name; ?></h1>
 		<h2><?php echo $detail->description; ?></h2>
 		<div class="full">
@@ -95,7 +113,7 @@ else{
 				<a href="./index.php?page=home&friends<?php if(isset($_GET['id'])){ echo "&id=".$_GET['id']; } ?>" class="profile photo"><?php echo $countFriends; ?></a>
 			</div>
 			<div class="third">
-				<a href="./index.php?page=home&likes<?php if(isset($_GET['id'])){ echo "&id=".$_GET['id']; } ?>" class="profile likes">5531</a>
+				<a href="./index.php?page=home&likes<?php if(isset($_GET['id'])){ echo "&id=".$_GET['id']; } ?>" class="profile likes">0000</a>
 			</div>
 		</div>
 	</header>
@@ -126,7 +144,7 @@ else{
 					echo '<a href="./index.php?page=detail&id='.$feed->id.'">
 						<div class="feed-item">
 							<h3>'.$feed->title.'</h3>
-							<img class="feed-img" src="assets/img/avatar.png">
+							<img class="feed-img" src="./images/'.$feed->user_id.'_'.$feed->session.'_after.jpeg">
 							<p>'.$feed->message.'</p>
 							<p class="tags"><span>tags:</span>';
 								if($tags){
