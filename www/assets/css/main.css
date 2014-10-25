@@ -477,3 +477,24 @@ a.profile.likes{
 	text-shadow: 1px 1px 1px #EC5959;
 	font-size: 18px;
 }
+
+/*friend*/
+.friend { width:580px; margin: 0 auto;}
+.friend .friend-row { margin-bottom: 20px; display: block; }
+.friend .friend-row .friend-item {width: 145px; margin:0 auto; text-align: center;}
+.friend .friend-row .friend-item img {
+	height: 100px;
+	width: 100px;
+	float: left;
+	border-radius: 50%;
+	border: 5px solid #8db8bb;
+	display: block;
+	margin-left: 14px;
+	margin-bottom: 15px;
+}
+.friend .friend-row .friend-item p {
+	font-weight: 100;
+	font-size: 15px;
+	color: #8db8bb;
+}
+

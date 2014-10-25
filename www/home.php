@@ -91,13 +91,75 @@ else{
 					if(!file_exists(".".$profileImageFriend)){
 						$profileImageFriend = "/assets/img/avatar.png";
 					}
-					echo '<a href="./index.php?page=home&id='.$friend->id.'">
-						<div class="feed-item">
-							<h3>'.$friend->first_name.' '.$friend->last_name.'</h3>
-							<img class="feed-img" src="'.$profileImageFriend.'">
-							<p>'.$friend->description.'</p>
-						</div>
-					</a>';
+					echo 
+					// '<a href="./index.php?page=home&id='.$friend->id.'">
+					// 	<div class="feed-item">
+					// 		<h3>'.$friend->first_name.' '.$friend->last_name.'</h3>
+					// 		<img class="feed-img" src="'.$profileImageFriend.'">
+					// 		<p>'.$friend->description.'</p>
+					// 	</div>
+					// </a>'
+
+					'
+					<table class="friend">
+						<tr class="friend-row">
+							<td class="friend-item">
+								<a href="" />
+									<img class="feed-img" src="'.$profileImageFriend.'">
+									<p>Jason Derulo</p>
+								</a>
+							</td>
+							<td class="friend-item">
+								<a href="" />
+									<img class="feed-img" src="'.$profileImageFriend.'">
+									<p>Jason Derulo</p>
+								</a>
+							</td>
+							<td class="friend-item">
+								<a href="" />
+									<img class="feed-img" src="'.$profileImageFriend.'">
+									<p>Jason Derulo</p>
+								</a>
+							</td>
+							<td class="friend-item">
+								<a href="" />
+									<img class="feed-img" src="'.$profileImageFriend.'">
+									<p>Jason Derulo</p>
+								</a>
+							</td>
+						</tr>
+						<tr class="friend-row">
+							<td class="friend-item">
+								<a href="" />
+									<img class="feed-img" src="'.$profileImageFriend.'">
+									<p>Jason Derulo</p>
+								</a>
+							</td>
+							<td class="friend-item">
+								<a href="" />
+									<a href="" />
+									<img class="feed-img" src="'.$profileImageFriend.'">
+									<p>Jason Derulo</p>
+								</a>
+								</a>
+							</td>
+							<td class="friend-item">
+								<a href="" />
+									<img class="feed-img" src="'.$profileImageFriend.'">
+									<p>Jason Derulo</p>
+								</a>
+							</td>
+							<td class="friend-item">
+								<a href="" />
+									<img class="feed-img" src="'.$profileImageFriend.'">
+									<p>Jason Derulo</p>
+								</a>
+							</td>
+						</tr>
+					</table>
+					'
+
+					;
 				}
 			}
 		}
