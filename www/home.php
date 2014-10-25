@@ -1,10 +1,55 @@
+
+<?php
+
+if(!isset($_SESSION['id'])) {
+    echo '<script> window.location = "./index.php"</script>';exit;
+} else {
+	$user_id = $_SESSION['id'];
+}
+
+$select_detail = $pdo->prepare('SELECT u.* FROM user u 
+								INNER JOIN user f ON u.follow_id = f.id
+								WHERE u.id = :user_id');
+
+try
+{	
+	$select_detail->execute(array(':user_id' => $user_id));
+	$detail = $select_detail->fetchAll();
+	$select_detail->closeCursor();
+}
+catch(PDOException $e)
+{
+	$json['error'] = TRUE;
+	$json['msg'] = 'Error executing select_detail: ' . $e->getMessage();
+	exit;
+}
+
+?>
+
 <div class="container">
 	<div class="top-bar">
 		<div class="container">
 			<a class="trigger-menu" href="#"></a>
 			<a class="trigger-settings" href="#"></a>
-		</div>
-	</div>
+
+<div class="top-bar">
+	<a class="trigger-menu" href="#"></a>
+	<a class="trigger-settings" href="#"></a>
+</div>
+<!--avatar-->
+<header class="profile">
+<?php
+if(count($detail) > 0){
+	foreach($detail as $row){
+		echo '<img src="assets/img/'. $row["picture"] .'" class="profile-avatar"/>';
+		echo "<h1>"  .$row["first_name"] . " ";
+		echo $row["last_name"] . "</h1>";
+		echo "<h2>" . $row["description"] . "</h2>";
+	}
+}
+
+?>
+
 
 	<!--avatar-->
 	<header class="profile">
