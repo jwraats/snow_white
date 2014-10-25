@@ -1,13 +1,8 @@
 <?php
-
-$db_name = 'snow_white';
-$db_host = 'localhost';
-$db_user = 'snow';
-$db_pass = 'white';
-
-try {
-    $pdo = new PDO('mysql:host='.$db_host.';dbname='.$db_name, $db_user, $db_pass);
-} catch (PDOException $e) {
-    print "Error!: " . $e->getMessage() . "<br/>";
-    die();
+error_reporting(E_ALL); //Turn off after development PLEASE :P
+if(session_id() == ''){
+    session_start();
 }
+include('./Database.php');
+$db = new Database('localhost', 'snow_white', 'snow', 'white');
+

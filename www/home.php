@@ -1,26 +1,18 @@
 
 <?php
-
 if(!isset($_SESSION['id'])) {
     echo '<script> window.location = "./index.php"</script>';exit;
-} else {
-	$user_id = $_SESSION['id'];
 }
 
-$select_detail = $pdo->prepare('SELECT u.* FROM user u 
-								INNER JOIN user f ON u.follow_id = f.id
-								WHERE u.id = :user_id');
-
-try
-{	
-	$select_detail->execute(array(':user_id' => $user_id));
-	$detail = $select_detail->fetch(PDO::FETCH_OBJ);
-	$select_detail->closeCursor();
+if(isset($_GET['id'])){
+	$detail = $db->getUserByID($_GET['id']);
 }
-catch(PDOException $e)
-{
-	$json['error'] = TRUE;
-	$json['msg'] = 'Error executing select_detail: ' . $e->getMessage();
+else{ //Show own profile
+	$detail = $db->getUserByID($_SESSION['id']);
+}
+
+if(!$detail){
+	echo "User not existing";
 	exit;
 }
 
