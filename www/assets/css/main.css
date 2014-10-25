@@ -42,6 +42,10 @@ a{
   transition: opacity 0.5s 0.5s ease; 
   opacity: 0;
 }
+[placeholder]:focus::-webkit-textarea-placeholder {
+  transition: opacity 0.5s 0.5s ease; 
+  opacity: 0;
+}
 
 fieldset{
 	border:none;
@@ -57,12 +61,30 @@ fieldset input{
 	height:60px;
 	display: block;
 	margin:5px auto 30px;
-	width:100%;
+	width:360px;
 	outline: none;
-	text-align: center;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 18px;
 	color: #b2baba;
+	padding-left: 20px;
+}
+
+fieldset textarea{
+	position: relative;
+	border: none;
+	background-color: white;
+	border-radius: 30px;
+	min-height: 80px;
+	display: block;
+	margin: 5px auto 30px;
+	width: 360px;
+	outline: none;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 18px;
+	color: #b2baba;
+	padding-left: 20px;
+	max-width: 360px;
+	padding-top: 24px;
 }
 
 fieldset button{
@@ -161,6 +183,8 @@ header.profile{
 	border-bottom:5px solid #b5d3d5;
 	padding-bottom:25px;
 }
+
+header.profile.friends{ height: auto; }
 
 a.profile{
 	text-decoration: none;
@@ -496,5 +520,10 @@ a.profile.likes{
 	font-weight: 100;
 	font-size: 15px;
 	color: #8db8bb;
+}
+
+#photo {
+	background: #ffffff;
+	padding:20px 0;
 }
 
