@@ -14,6 +14,17 @@ if(!$detail){
 	echo "User not existing";
 	exit;
 }
+
+if(isset($_GET['addFriend'])){
+	if(!$db->addFriend($_GET['id'])){
+		echo '<script> window.location = "./index.php?page=login&error=Er is een fout opgetreden"</script>';exit;
+	}
+} elseif(isset($_GET['delFriend'])){
+	if(!$db->delFriend($_GET['id'])){
+		echo '<script> window.location = "./index.php?page=login&error=Er is een fout opgetreden"</script>';exit;
+	}
+}
+
 $profileImage = "/images/".$detail->id."_0_default.jpeg";
 if(!file_exists(".".$profileImage)){
 	$profileImage = "/assets/img/avatar.png";
@@ -50,12 +61,26 @@ if($friends){
 else{
 	$countFriends = 0;
 }
+
+
+
 ?>
 
 <div class="container">
 	<div class="top-bar">
 		<button class="trigger-menu" id="trigger-overlay" type="button"></button>
-		<a class="trigger-settings" href="#"></a>
+		<?php 
+		if(!$db->checkIfFriends($detail->id) && $detail->id != $_SESSION['id']){
+			echo '<a class="trigger-settings" href="./index.php?page=home&id='.$detail->id.'&addFriend"></a>';
+		} else{
+			if($detail->id != $_SESSION['id']){
+				echo '<a class="trigger-settings" href="./index.php?page=home&id='.$detail->id.'&delFriend"></a>DE';
+			}else{
+
+			}
+			
+		}
+		?>
 	</div>
 	<!--avatar-->
 	<header class="profile">
@@ -64,13 +89,13 @@ else{
 		<h2><?php echo $detail->description; ?></h2>
 		<div class="full">
 			<div class="third">
-				<a href="./index.php?page=home" class="profile video"><?php echo $countFeeds; ?></a>
+				<a href="./index.php?page=home<?php if(isset($_GET['id'])){ echo "&id=".$_GET['id']; } ?>" class="profile video"><?php echo $countFeeds; ?></a>
 			</div>
 			<div class="third">
-				<a href="./index.php?page=home&friends" class="profile photo"><?php echo $countFriends; ?></a>
+				<a href="./index.php?page=home&friends<?php if(isset($_GET['id'])){ echo "&id=".$_GET['id']; } ?>" class="profile photo"><?php echo $countFriends; ?></a>
 			</div>
 			<div class="third">
-				<a href="./index.php?page=home&likes" class="profile likes">5531</a>
+				<a href="./index.php?page=home&likes<?php if(isset($_GET['id'])){ echo "&id=".$_GET['id']; } ?>" class="profile likes">5531</a>
 			</div>
 		</div>
 	</header>
