@@ -1,6 +1,6 @@
 <?php
 if(!isset($_SESSION['id'])) {
-    echo '<script> window.location = "./index.php"</script>';exit;
+    echo '<script> window.location = "./index.php?page=login"</script>';exit;
 }
 
 if(isset($_GET['id'])){

@@ -2,7 +2,7 @@
 
 # check login
 if(!isset($_SESSION['id'])) {
-    echo '<script> window.location = "./index.php"</script>';
+    echo '<script> window.location = "./index.php?page=login"</script>';exit;
 } else {
 	$user_id = $_SESSION['id'];
 }
