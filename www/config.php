@@ -4,5 +4,6 @@ if(session_id() == ''){
     session_start();
 }
 include('./Database.php');
+$imageDir = "./images/";
 $db = new Database('localhost', 'snow_white', 'snow', 'white');
 
