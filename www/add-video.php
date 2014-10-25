@@ -51,7 +51,7 @@ if(count($images) < 0){
 	if(isset($_GET['session']) && is_numeric($_GET['session'])){
 		$imageUrl = "/images/".$detail->id."_".$_GET['session']."_after.jpeg";
 		echo '<header class="profile friends">
-			<img class="feed-img" src="'.$imageUrl.'" style="width:200px;height:150px;" />
+			<img class="feed-img" src="'.$imageUrl.'" style="width:200px;height:150px; display:block; margin: 0 auto;" />
 			<form method="post" action="index.php?page=add-video">
 				<fieldset>
 
