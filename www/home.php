@@ -54,20 +54,9 @@ else{
 
 <div class="container">
 	<div class="top-bar">
-			<button class="trigger-menu" id="trigger-overlay" type="button"></button>
-			<a class="trigger-settings" href="#"></a>
-		</div>
-
-		<div class="overlay overlay-slidedown">
-			<button type="button" class="overlay-close">Close</button>
-			<nav>
-				<ul>
-					<li><a href="#">Dashboard</a></li>
-					<li><a href="#">Profile</a></li>
-					<li><a href="#">Logout</a></li>
-				</ul>
-			</nav>
-		</div>
+		<button class="trigger-menu" id="trigger-overlay" type="button"></button>
+		<a class="trigger-settings" href="#"></a>
+	</div>
 	<!--avatar-->
 	<header class="profile">
 		<img src="<?php echo $profileImage; ?>" class="profile-avatar"/>
@@ -133,4 +122,15 @@ else{
 			
 		?>
 	</section>
+
+	<div class="overlay overlay-slidedown">
+		<button type="button" class="overlay-close">Close</button>
+		<nav>
+			<ul>
+				<li><a href="#">Dashboard</a></li>
+				<li><a href="./index.php?page=home">Profile</a></li>
+				<li><a href="./auth.php?logout">Logout</a></li>
+			</ul>
+		</nav>
+	</div>
 </div>
